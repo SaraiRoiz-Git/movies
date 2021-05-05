@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 class MovieCard extends React.Component {
     constructor(props) {
@@ -10,16 +10,19 @@ class MovieCard extends React.Component {
     render() {
         const movie = this.props.movie;
         return (
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={movie.poster} />
-                <Card.Body>
-                    <Card.Title>{movie.name}</Card.Title>
-                    <Card.Text>
-                        <b>Dirctor:</b>  {movie.director} <br />
-                        <b> Movie length:</b> {movie.length}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            <Col sm='12' md='6' lg='3' className="mb-3">
+                <Card >
+                    <Card.Img variant="top" src={movie.poster} />
+                    <Card.Body>
+                        <Card.Title>{movie.name}</Card.Title>
+                        <Card.Text>
+                            <b>Dirctor:</b>  {movie.director} <br />
+                            <b> Movie time:</b> {movie.length}(min)
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+
         )
     }
 }

@@ -1,20 +1,32 @@
 
 import React from 'react';
+import { Row } from 'react-bootstrap';
+import MovieData from '../data/MovieData';
+import MovieCard from './MovieCard';
 import SearchBox from './SearchBox';
 
 class MovieGallery extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
 
-        }
     }
 
     render() {
+        const movies = this.props.movies
+        console.log(movies)
+        const cards = movies.map(movie => {
+            return <MovieCard movie={new MovieData(movie.name,
+                movie.time,
+                movie.poster,
+                movie.director,
+                movie.mainStars
+            )} />
+        })
+
         return (
-            <div>
-                gallery
-            </div>
+            <Row>
+                {cards}
+            </Row>
         )
 
 

@@ -1,10 +1,11 @@
 class MovieData {
-    constructor(name,length,poster,director,mainStars) {
+    constructor(name, length, poster, director, mainStars) {
         this.name = name;
         this.length = length;
-        this.poster= poster;
+        this.poster = poster;
         this.director = director;
-         this.mainStars = mainStars;
+        this.mainStars = mainStars;
     }
 }
 export default MovieData
+
