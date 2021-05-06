@@ -12,8 +12,9 @@ class AppNavbar extends React.Component {
             <Navbar bg="dark" variant="dark" className="mb-3">
                 <Navbar.Brand href="#home">My Movies lists</Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#/movies">Movies</Nav.Link>
-                    <Nav.Link href="#/actors">actors</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/#/Movies">Movies</Nav.Link>
+                    <Nav.Link href="/#/Actors">actors</Nav.Link>
                     {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                 </Nav>
             </Navbar>

@@ -9,9 +9,14 @@ function App() {
   return (
     <div>
       <AppNavbar />
-      {/* <Container>
-        <MoviessPage />
-      </Container> */}
+      <Route exact path="/"></Route>
+      <Route exact path="/">
+        <Container>
+          <MoviessPage />
+        </Container>
+      </Route>
+
+
       <Container>
         <ActorsPage />
       </Container>
