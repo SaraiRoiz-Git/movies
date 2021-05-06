@@ -1,7 +1,9 @@
 
 import React from 'react';
-import MovieGallery from '../components/MovieGallery';
+import Gallery from '../components/Gallery';
+import MovieCard from '../components/MovieCard';
 import SearchBox from '../components/SearchBox';
+import MovieData from '../data/MovieData';
 
 class MoviessPage extends React.Component {
     constructor(props) {
@@ -28,7 +30,6 @@ class MoviessPage extends React.Component {
                         }
                     )
                 }
-
             })
     }
 
@@ -57,15 +58,27 @@ class MoviessPage extends React.Component {
                                     resultTMDB: []
                                 }
                             )
-                           
+
                         })
-                        
+
 
                 }
 
             })
     }
 
+    createCards() {
+        const movies = this.state.chosenMovies
+        const cards = movies.map(movie => {
+            return <MovieCard movie={new MovieData(movie.name,
+                movie.time,
+                movie.poster,
+                movie.director,
+                movie.mainStars
+            )} />
+        })
+        return cards;
+    }
 
 
     render() {
@@ -73,13 +86,13 @@ class MoviessPage extends React.Component {
             <div>
                 <SearchBox
                     search={this.state.search}
-                    placeHolder={'search for a movie'}
+                    placeHolder={'Choose a movie'}
                     result={this.state.resultTMDB}
                     onSearchChanged={this.searchTextChanged}
                     onResultSelected={this.addMovie}
                 />
-                
-                <MovieGallery movies = {this.state.chosenMovies} />
+
+                <Gallery movies={this.createCards()} />
             </div>
         )
 

@@ -1,13 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 import './App.css';
+import AppNavbar from './components/AppNavbar';
+import ActorsPage from './pages/ActorsPage';
 import MoviessPage from './pages/MoviesPage';
 
 function App() {
   return (
-    <Container>
-      <MoviessPage />
-    </Container>
+    <div>
+      <AppNavbar />
+      {/* <Container>
+        <MoviessPage />
+      </Container> */}
+      <Container>
+        <ActorsPage />
+      </Container>
+    </div>
+
   );
 }
 

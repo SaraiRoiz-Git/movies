@@ -10,7 +10,7 @@ class MovieCard extends React.Component {
     render() {
         const movie = this.props.movie;
         return (
-            <Col sm='12' md='6' lg='3' className="mb-3">
+            <Col sm='12' md='6' lg='4' className="mb-3">
                 <Card >
                     <Card.Img variant="top" src={movie.poster} />
                     <Card.Body>
