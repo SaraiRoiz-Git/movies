@@ -1,28 +1,38 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Navbar } from 'react-bootstrap';
-import './App.css';
 import AppNavbar from './components/AppNavbar';
+
 import ActorsPage from './pages/ActorsPage';
 import MoviessPage from './pages/MoviesPage';
+import { HashRouter, Route } from 'react-router-dom';
+import MovieInfo from './components/MovieInfo';
+import React from 'react';
 
-function App() {
-  return (
-    <div>
-      <AppNavbar />
-      <Route exact path="/"></Route>
-      <Route exact path="/">
-        <Container>
-          <MoviessPage />
-        </Container>
-      </Route>
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <HashRouter>
+          <AppNavbar />
+          <Container>
+            <Route exact path="/"></Route>
+            <Route exact path="/Movies">
+              <MoviessPage />
+            </Route>
+            <Route exact path="/Actors">
+              <ActorsPage />
+            </Route>
+            <Route exact path="/movie/:id">
+              <MovieInfo />
+            </Route>
+          </Container>
+        </HashRouter>
 
+      </div>
 
-      <Container>
-        <ActorsPage />
-      </Container>
-    </div>
+    );
+  }
 
-  );
 }
 
 export default App;

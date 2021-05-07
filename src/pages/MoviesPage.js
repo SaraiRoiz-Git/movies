@@ -21,7 +21,10 @@ class MoviessPage extends React.Component {
             .then((res) => {
                 if (res && res.results) {
                     const results = res.results.map((movie) => {
-                        return { name: movie.original_title, id: movie.id }
+                        return {
+                            name: movie.original_title,
+                            id: movie.id
+                        }
                     })
                     this.setState(
                         {
@@ -42,23 +45,38 @@ class MoviessPage extends React.Component {
                         name: data.original_title,
                         time: data.runtime,
                         poster: `https://www.themoviedb.org/t/p/w500${data.poster_path}`,
-                        director: '',
-                        mainActors: [],
-                        id: id
+                        id: id,
+                        rate: data.rate,
+                        overview: data.overview,
+                        genres: data.genres.name,
+                        language: data.language
+
                     }
                     fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=4b05d1f33354eefeaacd118430618d8f`).then((stream) => stream.json())
                         .then((data) => {
-                            chosenMovie.mainActors = data.cast[0].name + data.cast[1].name + data.cast[2].name;
-                            chosenMovie.director = data.crew.find((obj) => obj.job === "Director").name
-
-                            this.setState(
-                                {
-                                    chosenMovies: this.state.chosenMovies.concat(chosenMovie),
-                                    search: '',
-                                    resultTMDB: []
-                                }
-                            )
-
+                            if (data) {
+                                chosenMovie.mainActors = data.cast[0].name + data.cast[1].name + data.cast[2].name;
+                                chosenMovie.director = data.crew.find((obj) => obj.job === "Director").name
+                                const movieClass = new MovieData(
+                                    chosenMovie.name,
+                                    chosenMovie.time,
+                                    chosenMovie.poster,
+                                    chosenMovie.director,
+                                    chosenMovie.mainStars,
+                                    chosenMovie.rate,
+                                    chosenMovie.overview,
+                                    chosenMovie.genres,
+                                    chosenMovie.language,
+                                    chosenMovie.id
+                                )
+                                this.setState(
+                                    {
+                                        chosenMovies: this.state.chosenMovies.concat(movieClass),
+                                        search: '',
+                                        resultTMDB: []
+                                    }
+                                )
+                            }
                         })
 
 
@@ -70,12 +88,8 @@ class MoviessPage extends React.Component {
     createCards() {
         const movies = this.state.chosenMovies
         const cards = movies.map(movie => {
-            return <MovieCard movie={new MovieData(movie.name,
-                movie.time,
-                movie.poster,
-                movie.director,
-                movie.mainStars
-            )} />
+            return <MovieCard movie={movie} onClick={() => { this.openMoviePage(movie.id) }
+            } />
         })
         return cards;
     }
@@ -92,7 +106,8 @@ class MoviessPage extends React.Component {
                     onResultSelected={this.addMovie}
                 />
 
-                <Gallery movies={this.createCards()} />
+                <Gallery
+                    movies={this.createCards()} />
             </div>
         )
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, ListGroup, Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 class AppNavbar extends React.Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class AppNavbar extends React.Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/#/Movies">Movies</Nav.Link>
                     <Nav.Link href="/#/Actors">actors</Nav.Link>
-                    {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                 </Nav>
             </Navbar>
 

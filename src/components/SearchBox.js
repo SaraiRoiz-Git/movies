@@ -4,7 +4,6 @@ import { Form, ListGroup } from 'react-bootstrap';
 class SearchBox extends React.Component {
     constructor(props) {
         super(props)
-
     }
 
     render() {

@@ -55,7 +55,7 @@ class ActorsPage extends React.Component {
             <div className="p-actors-page">
                 <SearchBox
                     resultTMDB={this.state.resultTMDB}
-                    placeholder='Choose an Actor'
+                    placeHolder={'Choose an Actor'}
                     result={this.state.resultTMDB}
                     onSearchChanged={this.searchTextChanged}
                     onResultSelected={this.addActor}
