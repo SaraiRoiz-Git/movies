@@ -1,1 +1,8 @@
+*{
+    text-align: center;
+}
+
+.movie-page{
+    display:flex;
+}
 

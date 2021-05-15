@@ -23,7 +23,8 @@ class MoviessPage extends React.Component {
                     const results = res.results.map((movie) => {
                         return {
                             name: movie.original_title,
-                            id: movie.id
+                            id: movie.id,
+                            poster: `https://www.themoviedb.org/t/p/w500${movie.poster_path}`
                         }
                     })
                     this.setState(
@@ -37,59 +38,17 @@ class MoviessPage extends React.Component {
     }
 
     addMovie = (id) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=4b05d1f33354eefeaacd118430618d8f`)
-            .then((stream) => stream.json())
-            .then((data) => {
-                if (data) {
-                    const chosenMovie = {
-                        name: data.original_title,
-                        time: data.runtime,
-                        poster: `https://www.themoviedb.org/t/p/w500${data.poster_path}`,
-                        id: id,
-                        rate: data.rate,
-                        overview: data.overview,
-                        genres: data.genres.name,
-                        language: data.language
+        this.setState({
+            chosenMovies: this.state.chosenMovies.concat(this.state.resultTMDB.find((movie) => movie.id === id)),
+            search: "",
+            resultTMDB: []
+        })
 
-                    }
-                    fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=4b05d1f33354eefeaacd118430618d8f`).then((stream) => stream.json())
-                        .then((data) => {
-                            if (data) {
-                                chosenMovie.mainActors = data.cast[0].name + data.cast[1].name + data.cast[2].name;
-                                chosenMovie.director = data.crew.find((obj) => obj.job === "Director").name
-                                const movieClass = new MovieData(
-                                    chosenMovie.name,
-                                    chosenMovie.time,
-                                    chosenMovie.poster,
-                                    chosenMovie.director,
-                                    chosenMovie.mainStars,
-                                    chosenMovie.rate,
-                                    chosenMovie.overview,
-                                    chosenMovie.genres,
-                                    chosenMovie.language,
-                                    chosenMovie.id
-                                )
-                                this.setState(
-                                    {
-                                        chosenMovies: this.state.chosenMovies.concat(movieClass),
-                                        search: '',
-                                        resultTMDB: []
-                                    }
-                                )
-                            }
-                        })
-
-
-                }
-
-            })
     }
 
-    createCards() {
+    createCards = () => {
         const movies = this.state.chosenMovies
-        const cards = movies.map(movie => {
-            return <MovieCard movie={movie} onClick={() => { this.openMoviePage(movie.id) }
-            } />
+        const cards = movies.map(movie => {return <MovieCard movie={movie} />
         })
         return cards;
     }

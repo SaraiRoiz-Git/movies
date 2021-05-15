@@ -1,14 +1,14 @@
 class MovieData {
-    constructor(name, length, poster, director, mainStars, rate, overview, genres, language,id) {
+    constructor(name, poster, length, director, mainStars, rate, overview, genres, language, id) {
         this.name = name;
-        this.length = length;
         this.poster = poster;
+        this.length = length;
         this.director = director;
         this.mainStars = mainStars;
         this.rate = rate;
         this.overview = overview;
         this.genres = genres;
-        this.language =language;
+        this.language = language;
         this.id = id;
     }
 }
